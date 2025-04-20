@@ -176,13 +176,39 @@
     <section id="blog">
         <h2>Blog</h2>
         <p>Read my latest articles and insights on web development.</p>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSep8iOOce1MWUFit10xscmv_ws6YjkLcV-GOoS802PP03GuRQ/viewform?embedded=true" width="640" height="689" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+       
     </section>
 
     <section id="contact">
         <h2>Contact Me</h2>
         <p>Get in touch with me for collaborations and inquiries.</p>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSep8iOOce1MWUFit10xscmv_ws6YjkLcV-GOoS802PP03GuRQ/viewform?embedded=true" width="640" height="689" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <form id="myForm">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" placeholder="Your Message"></textarea>
+  <button type="submit">Send</button>
+</form>
+
+<script>
+  document.getElementById('myForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch('https://script.google.com/macros/s/AKfycbwTX_ceMs_xj1dam7ylxvBAAmbcZ_-FquA3f892DG98KDg2hoz9UHQJRw-1WvEa5xX7gg/exec', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+      alert("Submitted successfully!");
+      document.getElementById('myForm').reset();
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Something went wrong.");
+    });
+  });
+</script>
+
         <form action="#" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
